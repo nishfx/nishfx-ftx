@@ -60,6 +60,7 @@ class Client:
                 payload += "?" + urlencode(query)
             elif query:
                 payload += json.dumps(query)
+            print(self._api_secret)
             sign = hmac.new(
                 bytes(self._api_secret, "utf-8"),
                 bytes(payload, "utf-8"),
@@ -111,6 +112,11 @@ class Client:
         scope = "public"
         if any(endpoint.startswith(substr) for substr in constants.PRIVATE_ENDPOINTS):
             scope = "private"
+
+        print(scope)
+        print(str(method))
+        print(str(endpoint))
+        print(str(query))
 
         # Build header first
         headers = self._build_headers(scope, method, endpoint, query)
