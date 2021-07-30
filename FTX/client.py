@@ -60,7 +60,7 @@ class Client:
                 payload += "?" + urlencode(query)
             elif query:
                 payload += json.dumps(query)
-            print(self._api_secret)
+
             sign = hmac.new(
                 bytes(self._api_secret, "utf-8"),
                 bytes(payload, "utf-8"),
